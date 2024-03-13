@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,95 +10,168 @@
     <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
     <script>"https://api-demo.cartwebapp.com/data/2024"</script>
+
 <body>
-<section class="all-r">
-    <section class="budget-header">
-        <img src="images/image 2.png" class="img">
-        <h1>Budget Calculator<br><p class="pp">This is where you can easily do any type of budgeting that you need on a daily bases</p></h1>
-        <img src="images/image 1.png" class="img">
+    <section class="all-r">
+        <section class="budget-header">
+            <img src="images/image 2.png" class="img">
+            <h1>Budget Calculator</h1>
+            <img src="images/image 1.png" class="img">
+        </section>
+        <section class="all">
+            <section class="box">
+                <h2>Income</h2>
+                <section class="budget">
+                    <div id="root"></div>
+                    <p>Annual Salary<input type="number" id="annual-sal" class="input"></p>
+                    <p>Gross Monthly Salary<input type="number" class="input"></p>
+                    <p>Net Monthly Salary<input type="number" class="input"></p>
+                    <p>Extra Earnings<input type="number" class="input"></p>
+
+                </section>
+            </section>
+            <section class="box">
+                <h2>Housing</h2>
+
+                <section class="budget">
+                    <p><span class="dot"></span>Rent/Mortgage<input type="number" id="input1" class="input"></p> <button class="mood-btn">test</button>
+                    <p><span class="dot2"></span>Utilities<input type="number" id="input2" class="input"></p> <button class="mood-btn">test</button>
+                    <p><span class="dot3"></span>Insurance<input type="number" id="input3" class="input"></p> <button class="mood-btn">test</button>
+                    <p><span class="dot4"></span>Loans/Debt<input type="number" id="input4" class="input"></p> <button class="mood-btn">test</button>
+                </section>
+            </section>
+            <section class="box">
+                <h2 class="center">Living Expenses</h2>
+
+                <section class="budget">
+                    <p><span class="dot5"></span>Food<input type="number" id="input5" class="input"></p> <button class="mood-btn">test</button>
+                    <p><span class="dot6"></span>Transportation<input type="number" id="input6" class="input"> </p> <button class="mood-btn">test</button>
+                    <p><span class="dot7"></span>Child Care<input type="number" id="input7" class="input"></p> <button class="mood-btn">test</button>
+                    <p><span class="dot8"></span>Medical<input type="number" id="input8" class="input"></p> <button class="mood-btn">test</button>
+                </section>
+            </section>
+            <section class="box">
+                <h2 class="center2">Savings</h2>
+
+                <section class="budget">
+                    <p><span class="dot9"></span>Savings<input type="number" id="input9" class="input"></p> <button class="mood-btn">test</button>
+                    <p><span class="dot0"></span>Retirement<input type="number" id="input10" class="input"></p> <button class="mood-btn">test</button>
+                </section>
+            </section>
+            <section class="box">
+                <h2 class="center">Miscellaneous</h2>
+
+                <section class="budget">
+                    <p><span class="dot10"></span>Personal<input type="number" id="input11" class="input"></p> <button class="mood-btn">test</button>
+                    <p><span class="dot11"></span>Other Expenses<input type="number" id="input12" class="input"></p> <button class="mood-btn">test</button>
+                </section>
+            </section>
+        </section>
+
+        <div class="myChart">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            let chartData = []
+            const ctx = document.getElementById('myChart');
+
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        lable:['rent','utilities','insurence', 'loans', ] ,
+                        data: chartData,
+                        backgroundColor: [
+            'rgba(255, 3, 3, 1)',
+            'rgba(11, 6, 255, 1)',
+            'rgba(250, 255, 0, 1)',
+            'rgba(255, 153, 0, 1)',
+            'rgba(255, 0, 245, 1)',
+            'rgba(0, 255, 240, 1)',
+            'rgba(97, 255, 0, 1)',
+            'rgba(158, 0, 255, 1)',
+            'rgba(0, 160, 64, 1)',
+            'rgba(217, 217, 217, 1)', 
+            'rgba(0, 0, 0, 1)',
+            'rgba(159, 188, 112, 1)'
+           
+            
+        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                    }
+                }
+            });
+
+            function removeData(chart) {
+                chart.data.datasets.forEach((dataset) => {
+                    dataset.data.pop();
+                });
+                chart.update();
+            }
+
+            function addData(chart, data) {
+
+                chart.data.datasets.forEach((dataset) => {
+
+                    dataset.data = [...data]
+                });
+                chart.update();
+            }
+
+            function updateChart(event) {
+
+                event.preventDefault()
+                rentValue = Number(document.getElementById('input1').value);
+                utilitiesValue = Number(document.getElementById('input2').value);
+                insurenceValue = Number(document.getElementById('input3').value);
+                loansValue = Number(document.getElementById('input4').value);
+                foodValue = Number(document.getElementById('input5').value);
+                transportationValue = Number(document.getElementById('input6').value);
+                careValue = Number(document.getElementById('input7').value);
+                medicalValue = Number(document.getElementById('input8').value);
+                savingsValue = Number(document.getElementById('input9').value);
+                retirementValue = Number(document.getElementById('input10').value);
+                personalValue = Number(document.getElementById('input11').value);
+                otherValue = Number(document.getElementById('input12').value);
+
+                chartData = [
+                    rentValue,
+                    utilitiesValue,
+                    insurenceValue,
+                    loansValue,
+                    foodValue,
+                    transportationValue,
+                    careValue,
+                    medicalValue,
+                    savingsValue,
+                    retirementValue,
+                    personalValue,
+                    otherValue,
+                  
+                ]
+                removeData(myChart)
+                addData(myChart, chartData)
+
+            }
+
+            var moodBtn = document.querySelectorAll('.mood-btn');
+            moodBtn.forEach(btn => {
+                btn.addEventListener('click', updateChart, false)
+            })
+
+        </script>
+        </div>
     </section>
-    <section class="all">
-        <section class="box">
-            <h2>Income</h2>
-            <section class="budget">
-                <div id="root"></div>
-                <p>Annual Salary<input type="number" id="annual-sal" class="input"></p>
-                <p>Gross Monthly Salary<input type="number"  class="input"></p>
-                <p>Net Monthly Salary<input type="number"  class="input"></p>
-                <p>Extra Earnings<input type="number"  class="input"></p>
+</body>
 
-            </section>
-        </section>
-        <section class="box">
-            <h2>Housing</h2>
-
-            <section class="budget">
-                <p><span class="dot"></span>Rent/Mortgage<input type="number"  id="input1" class="input"></p>
-                <p><span class="dot2"></span>Utilities<input type="number"  id="2"  class="input"></p>
-                <p><span class="dot3"></span>Insurance<input type="number" id="3"  class="input"></p>
-                <p><span class="dot4"></span>Loans/Debt<input type="number"  id="4" class="input"></p>
-            </section>
-        </section>
-        <section class="box">
-            <h2 class="center">Living Expenses</h2>
-
-            <section class="budget">
-                <p><span class="dot5"></span>Food<input type="number"  id="5" class="input"></p>
-                <p><span class="dot6"></span>Transportation<input type="number"  id="6" class="input"></p>
-                <p><span class="dot7"></span>Child Care<input type="number"  id="7" class="input"></p>
-                <p><span class="dot8"></span>Medical<input type="number"  id="8" class="input"></p>
-            </section>
-        </section>
-        <section class="box">
-            <h2 class="center2">Savings</h2>
-
-            <section class="budget">
-                <p><span class="dot9"></span>Savings<input type="number"  id="9" class="input"></p>
-                <p><span class="dot0"></span>Retirement<input type="number"  id="0" class="input"></p>
-            </section>
-        </section>
-        <section class="box">
-            <h2 class="center">Miscellaneous</h2>
-
-            <section class="budget">
-                <p><span class="dot10"></span>Personal<input type="number"  id="10" class="input"></p>
-                <p><span class="dot11"></span>Other Expenses<input type="number"  id="11" class="input"></p>
-            </section>
-        </section>
-    </section>
-
-</section>
-<div class="myChart">
-    <canvas id="myChart"></canvas>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
-  <script>
-    const ctx = document.getElementById('myChart');
-  
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-          
-          }
-        }
-      }
-    });
-   
-  </script>
-
-</section>
+</html>
 </body>
 
 </html>

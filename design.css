@@ -4,14 +4,13 @@ body{
     margin: 0;
 }
 
-.myChart{
-width: 20%;
 
+.myChart{
+    max-width: 50%;
+    width: 30%;
+   
 }
- .pp{
-    font-size: .2em;
-   margin-left:  1.9em;
- } 
+  
 
 .budget-header {
     display: flex;
@@ -260,7 +259,10 @@ h2 {
         margin: 0;
     }
 
-
+    .myChart{
+        max-width: 100%;
+        width:100%
+    }
 
 
 
