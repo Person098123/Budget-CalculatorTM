@@ -13,7 +13,7 @@
 <section class="all-r">
     <section class="budget-header">
         <img src="images/image 2.png" class="img">
-        <h1>Budget Calculator</h1>
+        <h1>Budget Calculator<br><p class="pp">This is where you can easily do any type of budgeting that you need on a daily bases</p></h1>
         <img src="images/image 1.png" class="img">
     </section>
     <section class="all">
@@ -60,14 +60,42 @@
             <h2 class="center">Miscellaneous</h2>
 
             <section class="budget">
-                <p><span class="dot10"></span>Personal<input type="number"  id="10" lass="input"></p>
-                <p><span class="dot11"></span>Other Expenses<input type="number"  id="11" lass="input"></p>
+                <p><span class="dot10"></span>Personal<input type="number"  id="10" class="input"></p>
+                <p><span class="dot11"></span>Other Expenses<input type="number"  id="11" class="input"></p>
             </section>
         </section>
     </section>
 
 </section>
-<script></script>
+<div class="myChart">
+    <canvas id="myChart"></canvas>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+          
+          }
+        }
+      }
+    });
+   
+  </script>
 
 </section>
 </body>

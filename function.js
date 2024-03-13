@@ -1,4 +1,3 @@
-
 let utils = {}; //create a namespace for our utility functions
 
 //get function to make an HTTP GET request
@@ -56,15 +55,15 @@ async function init() {
     let url = 'https://api-demo.cartwebapp.com/data/2024';
 
     //create a variable to hold the JSON data
-    let occupations = null;
-
+    let occupations = null; 
+    
     //try to retrieve the JSON data from the server
     try {
         //retrieve the JSON data from the server
         occupations = await utils.getJSON(url);
     }
     //catch any errors and display them in the root element
-    catch (error) {
+    catch(error){
         root.style.color = 'red';
         root.textContent = `error: ${error}`;
     }
@@ -95,7 +94,6 @@ function buildList(jobs) {
         html += `<div><strong>Salary</strong>: $${job.salary.toLocaleString('en-US')}</div>`;
         //close the section
         html += '</section>';
-        html += '<br>'
     }
 
     //return the completed html

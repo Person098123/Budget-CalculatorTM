@@ -4,9 +4,14 @@ body{
     margin: 0;
 }
 
+.myChart{
+width: 20%;
 
-
-  
+}
+ .pp{
+    font-size: .2em;
+   margin-left:  1.9em;
+ } 
 
 .budget-header {
     display: flex;
