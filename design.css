@@ -4,11 +4,10 @@ body{
     margin: 0;
 }
 
-
-.myChart{
-    max-width: 50%;
-    width: 30%;
-   
+.pie{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
   
 
@@ -191,7 +190,9 @@ h2 {
     width:50%;
 
 }
+@media screen and (max-width: 545px) {
 
+}
 @media screen and (max-width: 391px) {
 
 

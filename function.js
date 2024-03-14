@@ -1,3 +1,4 @@
+
 let utils = {}; //create a namespace for our utility functions
 
 //get function to make an HTTP GET request
@@ -55,15 +56,15 @@ async function init() {
     let url = 'https://api-demo.cartwebapp.com/data/2024';
 
     //create a variable to hold the JSON data
-    let occupations = null; 
-    
+    let occupations = null;
+
     //try to retrieve the JSON data from the server
     try {
         //retrieve the JSON data from the server
         occupations = await utils.getJSON(url);
     }
     //catch any errors and display them in the root element
-    catch(error){
+    catch (error) {
         root.style.color = 'red';
         root.textContent = `error: ${error}`;
     }
@@ -94,6 +95,7 @@ function buildList(jobs) {
         html += `<div><strong>Salary</strong>: $${job.salary.toLocaleString('en-US')}</div>`;
         //close the section
         html += '</section>';
+        html += '<br>'
     }
 
     //return the completed html
@@ -101,21 +103,19 @@ function buildList(jobs) {
 }
 //initialize the web page when the DOM is ready
 document.addEventListener('DOMContentLoaded', init);
-// const yValues 
-// const xValues = ["Rent/Mortgage", "Utilities", "Insurance", "Loans/Debt", "Food", "Transportation", "Child Care", "Medical", "Savings", "Retirement", "Personal", "Other Expenses"];
-// const barColors = [ 
-// "#FF0000", 
-// "#0500FF", 
-// "#FFF500", 
-// "#FFF500", 
-// " #FF6B00", 
-// "#FF00F5", 
-// "#00FFF0", 
-// "#00FF47", 
-// "#9E00FF", 
-// "#00A040", 
-// "#A7A7A7", 
-// "#000000",
-// "#9FBC70"
-// ];
 
+
+function discount() {
+    var annualSal = document.getElementById('annual-sal').value
+    var grossSal = (annualSal * 1) / 12
+    var netSal = (annualSal/12) * .88 * .93 * .938 * .9855 * .99 * .95 -180
+    document.getElementById('net-sal').value = Math.round(netSal *100)/100
+    document.getElementById('gross-sal').value = Math.round(grossSal *100)/100
+    var extraAdd= document.getElementById('extra').value * 1
+    var totalMonth = Math.round(netSal *100) /100 +(extraAdd *100)/100
+    document.getElementById('totalMonth').innerHTML = totalMonth
+   
+
+  }
+  
+  document.querySelectorAll("#net-sal").forEach(discount)
