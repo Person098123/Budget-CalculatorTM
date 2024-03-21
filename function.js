@@ -119,3 +119,5 @@ function discount() {
   }
   
   document.querySelectorAll("#net-sal").forEach(discount)
+
+  
